@@ -7,3 +7,7 @@ Creation of Contents: With comments and figures, the scripts were mainly reprodu
 
 About Brian Lesko: At the time of writing, 06/21/2023: Brian Lesko is, in part, a Graduate Researcher and Teaching Associate, a Masters of mechanical engineering student, and is studying mechatronic controls theory, vehicle systems, and robotics. Looking for related opportunies!
 Also interested in investment partners and business oriented. Check out my linkedin at https://www.linkedin.com/in/brianlesko/ 
+Check out my matlab repository: https://github.com/BrianLesko/RoboticsOld 
+
+
+
