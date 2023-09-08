@@ -163,11 +163,15 @@ frame_text.empty()
 # rerun.
 st.button("Re-run")
 
+st.write(' ')
+st.write('Tip: if youre on mobile, you can edit the animation by clicking the top left arrow')
+st.write('')
 
 #################################################
 # Mathematical Explanation
 #################################################
 if st.sidebar.checkbox("explanation", value=True):
+
     # explain what a rotation matrix is
     st.write('  ')
     st.write('  ')
