@@ -188,30 +188,35 @@ st.write('By Brian Lesko, 9/13/2023')
 col1, col2 = st.columns([5, 11], gap="medium")
 
 with col1:
+    st.write('This is a goal seeking robot 👉')
+    st.write('Change its target below 👇')
 
-    right_side = col1.radio(
-    "Show on right side 👉", ["Dynamic", "Static"], horizontal=True)
+    Dynamic = True
 
     x_goal = st.slider('X Goal', -2.0, 2.0, 1.5, step=0.01)
     y_goal = st.slider('Y Goal', -2.0, 2.0, 0.5, step=0.01)
     X_goal = np.array([[x_goal], [y_goal]])
 
-    st.write('Cost Surface', '📈')
-    cost_surface = st.empty()
+    #Linear algegebra and Calculus are used to solve the optimization
+    st.write('Check out the joint frames here 👇')
+
+    Joints = False
+    if st.checkbox('Show robot joints', value = False):
+        Joints = True
+
+st.write('  ')
+st.write('**What is going on?**')
+st.write('At each time step, the robot looks at a cost function and its partial derivatives, which act as a compass pointing towards the goal. The joints values are incremented and the new end effector position is calculated using forward kinematics. The new cost and partial derivatives are then calculated from the distance from the end effector to the goal. This process is repeated until the robot reaches the goal. This is the same process that is used in nueral network training.')
 
 st.write('  ')
 subcol1, subcol2, subcol3 = st.columns(3)
-with subcol1:
-    Joints = False
-    if st.checkbox('Show robot joints'):
-        Joints = True
     
-with subcol3:
+with subcol1:
     Explanation = False
     if st.checkbox('Show Explanation Below'):
         Explanation = True
 
-with subcol2:
+with subcol3:
     if st.checkbox('Change Initial Pose'):
         th1 = st.sidebar.slider('Theta 1', -np.pi, np.pi, 0.0, step=0.01)
         th2 = st.sidebar.slider('Theta 2', -np.pi, np.pi, 0.0, step=0.01)
@@ -221,19 +226,17 @@ with subcol2:
         th2 = 0
         th0 = np.array([[th1], [th2]])
 
-"---"
-
 #######################################################
 # INITIALIZATION OF THE FIRST PLOT AND TITLE
 #######################################################
 
 # figure 1 is for the robot
-fig1 = plt.figure(figsize=plt.figaspect(0.75))
+fig1 = plt.figure(figsize=plt.figaspect(1))
 ax1 = fig1.add_subplot(111)
 
-# figure 2 is for the cost surface
-fig2 = plt.figure(figsize=plt.figaspect(0.75))
-ax2 = fig2.add_subplot(111, projection='3d')
+# figure 3 is for the cost topographic map
+fig3 = plt.figure(figsize=plt.figaspect(1))
+ax3 = fig3.add_subplot(111)
 
 def setPlotSettings(Joints = False,azim = -60):
     ax1.set_xlabel('X')
@@ -242,46 +245,12 @@ def setPlotSettings(Joints = False,azim = -60):
     # set the axes ticks to only show integers
     ax1.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
     ax1.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
-
-    # set text size for figure 2
-    ax2.tick_params(labelsize=6)
-    ax2.set_xlabel('Theta 1',fontsize=6)
-    ax2.set_ylabel('Theta 2', fontsize=6)
-    ax2.set_zlabel('Cost', fontsize=6)
-
-    # Increase the figure size
-    fig2.set_size_inches(4, 4)
-
-    # decrease tick mark size for surface plot
-    ax2.tick_params(labelsize=5)
-    ax2.locator_params(axis='x', nbins=3)
-    ax2.locator_params(axis='y', nbins=3)
-    ax2.locator_params(axis='z', nbins=3)
-
-    # set the elevation and azimuth of the surface plot
-    ax2.view_init(elev=45, azim=azim)
-
-    # decrease the space between the axes ticks and the plot 
-    ax2.tick_params(axis='x', pad=-3)
-    ax2.tick_params(axis='y', pad=-3)
-    ax2.tick_params(axis='z', pad=-3)
-
-    # decrease the space between the axes labels and the plot
-    ax2.xaxis.labelpad = -10
-    ax2.yaxis.labelpad = -10
-    ax2.zaxis.labelpad = -10
-
-    ax1.set_xlim([-2,4])
-    ax1.set_ylim([-2,2])
-
-    # set the axes label to theta_1 and theta_2 in latex
-    ax2.set_xlabel(r'$\theta_1$', fontsize=6)
-    ax2.set_ylabel(r'$\theta_2$', fontsize=6)
-    ax2.set_zlabel('J', fontsize=6)
+    ax1.set_xlim([-3, 3])
+    ax1.set_ylim([-2, 2])
 
     if Joints == True:
         for i in range(len(T_list)):
-            draw_axis(ax1, T_list[i], length=1, tone=0.5, alpha=.2)
+            draw_axis(ax1, T_list[i], length=1, tone=0.5, alpha=.333)
 
 ######################################################
 # PLOT the START and GOAL robot position
@@ -301,16 +270,9 @@ ax1.plot(X_goal[0], X_goal[1], 'kx', markersize=5)
 lr = 0.0045
 th, J, hist = grad_opt_simp(Jeval,th0,X_goal,lr,n_iter=2000)
 
-# plot the location of the minimum cost
-ax2.scatter(th[0], th[1], J, c='k', marker='x', s=15)
-
-# plot the location of the starting cost
-ax2.scatter(th0[0], th0[1], hist['J'][0], c='k', marker='o', s=15)
-
 # find the average of th and th0
 th_avg = (th + th0) / 2
 # plot the location of the average cost for debugg 
-#ax2.scatter(th_avg[0], th_avg[1], Jeval(th_avg,X_goal)[0], c='k', marker='o', s=15)
 
 T_list0 = getT_list(th0)
 T_listEnd = getT_list(th)
@@ -321,9 +283,8 @@ plot_robot(ax1, T_listEnd,alpha = .1)
 ######################################################
 
 # create a meshgrid of theta values centered at th_avg
-c = 1
-th1 = np.linspace(-c*np.pi, c*np.pi, 18) + th_avg[0]
-th2 = np.linspace(-c*np.pi, c*np.pi, 18) + th_avg[1]
+th1 = np.linspace(-2.3*np.pi, 2.3*np.pi, 200) + th_avg[0]
+th2 = np.linspace(-1.5*np.pi, 1.5*np.pi, 200) + th_avg[1]
 TH1, TH2 = np.meshgrid(th1, th2)
 
 # evaluate the cost function for each theta combination
@@ -332,26 +293,42 @@ for i in range(TH1.shape[0]):
     for j in range(TH1.shape[1]):
         J[i,j], _ = Jeval([TH1[i,j], TH2[i,j]],X_goal)
 
-# plot the cost surface
-ax2.plot_surface(TH1, TH2, J, cmap='plasma', linewidth=0.2, alpha=.6)
-#ax2.plot_wireframe(TH1, TH2, J, rstride=1, cstride=1,color = 'red' ,alpha = 1)
-
-# plot the history of the gradient descent optimization
-ax2.plot(np.array(hist['th0'])[:,0], np.array(hist['th0'])[:,1], hist['J'], 'k-', linewidth=1.5,alpha = 1)
-
 #######################################################
 # One plot line reduces plot flickering
 #######################################################
 
-if right_side == "Dynamic":
-    
-    with col2:
+col1b, col2b = st.columns([5, 11], gap="medium")
 
-        with st.expander("Dynamic 🦾", expanded=True):
-            plotspot = st.empty()
-
+if Dynamic == True:
     with col2:
-        with st.expander("Optimization Information"):
+        with st.expander("Dynamic 🤖", expanded=True):
+            robot_plot = st.empty()
+
+
+    with st.expander("Solution Topography 🌐", expanded=True):
+            cost_top_plot = st.empty()
+            # plot a topographic map of the cost surface 
+            ax3.contour(TH1, TH2, J, 20, cmap='inferno', linewidth=0.01, alpha=1)
+            ax3.plot(np.array(hist['th0'])[:,0], np.array(hist['th0'])[:,1], 'k-', linewidth=1.5,alpha = 1)  
+            ax3.plot(th[0], th[1], 'kx', markersize=5)
+            ax3.plot(th0[0], th0[1], 'ko', markersize=3)
+
+            # Figure settings
+            c = 0.8
+            ax3.set_xlim([-c*2*np.pi+th_avg[0], c*2*np.pi+th_avg[0]])
+            ax3.set_ylim([-c*1.3333333*np.pi+th_avg[1], c*1.33333333*np.pi+th_avg[1]])
+
+            # only show three tick marks 
+            ax3.xaxis.set_major_locator(plt.MaxNLocator(6))
+            ax3.yaxis.set_major_locator(plt.MaxNLocator(4))
+
+            ax3.set_aspect('equal')
+            ax3.set_xlabel(r'$\theta_1$', fontsize=12)
+            ax3.set_ylabel(r'$\theta_2$', fontsize= 12)
+            with cost_top_plot:
+                st.pyplot(fig3)
+
+    with st.expander("Optimization Information"):
             subcol1, subcol2 = st.columns(2)
             with subcol1: 
                 st.write('Initial cost: ', hist['J'][0])
@@ -363,14 +340,10 @@ if right_side == "Dynamic":
             st.write('Learning rate: ', lr)
             st.write('Final Error: ', np.linalg.norm(T_listEnd[2][0:2,3] - X_goal.T),'meters')
     
-    with col2:
-        with st.expander("Cost Surface Adjustment"):
-            st.write('Empty for now')
 
-            
 
     n = len(hist['th0'])
-    # Generate exponential sequence
+
     exp_seq = np.geomspace(1, n, num=50, dtype=int) - 1
 
     azim = -60
@@ -383,51 +356,31 @@ if right_side == "Dynamic":
             if np.linalg.norm(th - th_prev) > .04 * np.pi/180:
                 # clear the axes
                 ax1.clear()
-                ax2.clear()
                 # plot the goal position and starting position
                 ax1.plot(X_goal[0], X_goal[1], 'kx', markersize=5)
                 plot_robot(ax1, T_list0,alpha = .1)
                 # plot the robot
                 T_list = getT_list(hist['th0'][i])
                 plot_robot(ax1, T_list)
-                azim = azim + 2
                 setPlotSettings(Joints,azim)
-                # update the st plot
                 plot_robot(ax1, T_list,alpha = .5)
-                with plotspot: 
+
+                # create a red dashed line along the history path on ax3 
+                ax3.plot(np.array(hist['th0'])[:i+1,0], np.array(hist['th0'])[:i+1,1], 'r--', linewidth=1.5,alpha = 1)
+
+                # when the robot is at the goal plot the cost minimum as a red x
+                if np.linalg.norm(T_list[2][0:2,3] - X_goal.T) < .01:
+                    ax3.plot(hist['th0'][i][0], hist['th0'][i][1], 'rx', markersize=5)
+
+                # Updating plots
+                with robot_plot:
                     st.pyplot(fig1)
-                # update the cost surface
-                ax2.plot_surface(TH1, TH2, J, cmap='plasma', linewidth=0.2, alpha=.5)
-                ax2.plot(np.array(hist['th0'])[:,0], np.array(hist['th0'])[:,1], hist['J'], 'k-', linewidth=1.5,alpha = 1)
-                ax2.scatter(th[0], th[1], Jeval(th,X_goal)[0], c='red', marker='x', s=20)
-                ax2.scatter(th0[0], th0[1], hist['J'][0], c='k', marker='o', s=15)
+                with cost_top_plot:
+                    st.pyplot(fig3)
 
-                with cost_surface:
-                    st.pyplot(fig2)
 
-if right_side == "Static":
-    setPlotSettings(Joints)
-    cost_surface.pyplot(fig2)
-    with col2:
 
-        with st.expander("Static 🦾", expanded=True):
-            setPlotSettings(Joints)
-            st.pyplot(fig1)
-    with col2:
-        with st.expander("Optimization Information"):
-            subcol1, subcol2 = st.columns(2)
-            with subcol1: 
-                st.write('Initial cost: ', hist['J'][0])
-                        
-            with subcol2:
-                st.write('Final cost: ', hist['J'][-1])
-                    
-            st.write('Number of iterations: ', len(hist['th0']))
-            st.write('Learning rate: ', lr)
-            st.write('Final Error: ', np.linalg.norm(T_listEnd[2][0:2,3] - X_goal.T),'meters')
-    with col2:
-        with st.expander("Cost Surface Adjustment"):
-            st.write('Empty for now')
+"---"
                  
 #######################################################
 # Explanation
@@ -527,15 +480,57 @@ def grad_opt_simp(Jeval,th_init,X_goal,lr=1e-3,n_iter=1000):
 st.write('  ') 
 st.write('  ') 
 
-st.write(""" 
-Hey it's Brian,
-         
-Through this page, I want to share my passion for engineering and my desire to be at the forefront of where technology meets creativity and precision.
-         
-Thanks for visting the page, I hope you enjoy it!
-         
-Feel free to explore more about my journey and connect with me through [Twitter](https://twitter.com/BrianJosephLeko), [Linkedin](https://www.linkedin.com/in/brianlesko/), or [Github](https://github.com/BrianLesko).
+col1, col2, = st.columns([1,5], gap="medium")
 
-""")
+with col1:
+    st.image('./dp.png')
+
+#Through this page, I want to share my passion for engineering and my desire to be at the forefront of where technology meets creativity and precision.
+with col2:
+    st.write(""" 
+    Hey it's Brian,
+            
+    Thanks for visting this page, I hope you enjoy it!
+            
+    Feel free to explore more about my journey and connect with me through Twitter, Github and Linkedin below.
+
+    """)
+         
+##################################################################
+# Brian Lesko
+# Social Links
+##################################################################
+
+
+# make 10 columns 
+col1, col2, col3, col4, col5, col6 = st.columns(6)
+
+
+with col2:
+
+    st.write('')
+    st.write('')
+    st.write('[Twitter](https://twitter.com/BrianJosephLeko)')
+
+with col3:
+
+    st.write('')
+    st.write('')
+    st.write('[LinkedIn](https://www.linkedin.com/in/brianlesko/)')
+
+with col4:
+
+    st.write('')
+    st.write('')
+    st.write('[Github](https://github.com/BrianLesko)') 
+
+with col5:
+
+    st.write('')
+    st.write('')
+    st.write('[Buy me a Coffee](https://www.buymeacoffee.com/brianlesko)')
+
+# write, centered "Brian Lesko 9/19/2023"
 
 "---"
+
