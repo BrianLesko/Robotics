@@ -483,8 +483,10 @@ st.write('  ')
 col1, col2, = st.columns([1,5], gap="medium")
 
 from PIL import Image
+image = Image.open('dp.png')
 # the PIL library is used to import the image and needs to be included in the requirements.txt file as: Pillow
-col1.image(Image.open('dp.png'))
+with col1:
+    st.image(image)
 
 #Through this page, I want to share my passion for engineering and my desire to be at the forefront of where technology meets creativity and precision.
 with col2:
