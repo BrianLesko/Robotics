@@ -1,8 +1,7 @@
 ##################################################################
 # Brian Lesko 
 # 9/7/2023
-# Robotics Study, Forwawrd Kinematics, 2D Robot animation, Calculate the end effector position from the joint angles
-# Linear algebra, screw axes approach
+# Robotics Study, Inverse Kinematics, 2D Robot animation, Calculate the needed joint angles to reach an effector position. Optimization
 ##################################################################
 
 # The necessary library imports
@@ -238,7 +237,7 @@ ax1 = fig1.add_subplot(111)
 fig3 = plt.figure(figsize=plt.figaspect(1))
 ax3 = fig3.add_subplot(111)
 
-def setPlotSettings(Joints = False,azim = -60):
+def setPlotSettings(Joints = False):
     ax1.set_xlabel('X')
     ax1.set_ylabel('Y')
     ax1.set_aspect('equal')
@@ -363,7 +362,6 @@ if Dynamic == True:
                 T_list = getT_list(hist['th0'][i])
                 plot_robot(ax1, T_list)
                 setPlotSettings(Joints,azim)
-                plot_robot(ax1, T_list,alpha = .5)
 
                 # create a red dashed line along the history path on ax3 
                 ax3.plot(np.array(hist['th0'])[:i+1,0], np.array(hist['th0'])[:i+1,1], 'r--', linewidth=1.5,alpha = 1)
