@@ -1,0 +1,6 @@
+numpy
+matplotlib
+ipython
+streamlit
+modern_robotics
+pillow

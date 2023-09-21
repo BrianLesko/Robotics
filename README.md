@@ -6,6 +6,7 @@ Contents: Written by Brian Lesko, the repository contains Python scripts demonst
 Projects: 
 [Transformation matricies demo](https://robotics-transformation.streamlit.app)  9/08/2023
 [Forward kinematics demo](https://robotics-fk-lesko.streamlit.app) 9/12/2023
+[Inverse kinematics demo](https://robotics-ik-lesko.streamlit.app) 9/21/2023
 
 About Brian Lesko: At the time of writing, 06/21/2023: Brian Lesko is, in part, a Graduate Researcher and Teaching Associate, a Masters of mechanical engineering student, and is studying mechatronic controls theory, vehicle systems, and robotics. 
 
