@@ -257,11 +257,6 @@ st.write('  ')
 suba, subb, subc = st.columns([1,1,1], gap="medium")
 
 with suba:
-    Explanation = False
-    if st.checkbox('Explain more!'):
-        Explanation = True
-
-with subc:
     if st.checkbox('Change Initial Pose'):
         th1 = st.sidebar.slider('Theta 1', -np.pi, np.pi, 0.0, step=0.01)
         th2 = st.sidebar.slider('Theta 2', -np.pi, np.pi, 0.0, step=0.01)
@@ -351,14 +346,6 @@ with st.expander("Joint Angles", expanded=True):
         st.pyplot(fig4)
 
 ######################################################
-# Other Options
-######################################################
-with st.expander("Advanced Options", expanded=False):
-    
-    st.checkbox('Show Explanation Below')
-
-
-######################################################
 # ANIMATE the SIMULATION
 ######################################################
 
@@ -411,6 +398,7 @@ for i in seq:
 # Explanation
 #######################################################
 
+Explanation = True
 if Explanation == True:
     st.header('Forward Dynamics and Equations of Motion')
 
