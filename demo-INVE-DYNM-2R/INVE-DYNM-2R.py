@@ -300,7 +300,7 @@ with col2:
         with st.spinner('Performing some simulation wizardry...'):
             th_d = np.array([[0], [0]])  # joint velocities
             lr = .0001  # learning rate
-            hist = run(mcgeval,th,th_d,T,lr,n_iter=8000)
+            hist = run(mcgeval,th,th_d,T,lr,n_iter=4000)
 
 ######################################################
 # Plot Angles over time 
