@@ -345,7 +345,6 @@ if Dynamic == True:
 
     exp_seq = np.geomspace(1, n, num=50, dtype=int) - 1
 
-    azim = -60
     for i in exp_seq:
 
         # Skip the iteration if the new joint parameters are < 1 degree from the previous iteration
@@ -361,7 +360,7 @@ if Dynamic == True:
                 # plot the robot
                 T_list = getT_list(hist['th0'][i])
                 plot_robot(ax1, T_list)
-                setPlotSettings(Joints,azim)
+                setPlotSettings(Joints)
 
                 # create a red dashed line along the history path on ax3 
                 ax3.plot(np.array(hist['th0'])[:i+1,0], np.array(hist['th0'])[:i+1,1], 'r--', linewidth=1.5,alpha = 1)
