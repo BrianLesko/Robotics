@@ -480,7 +480,6 @@ st.write('  ')
 
 col1, col2, = st.columns([1,5], gap="medium")
 
-# the PIL library is used to import the image and needs to be included in the requirements.txt file as: Pillow
 with col1:
     st.image('./dp.png')
 
