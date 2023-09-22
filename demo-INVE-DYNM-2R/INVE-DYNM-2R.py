@@ -179,7 +179,7 @@ def run(Jeval,th_init,th_d_init,T,lr=.01,n_iter=1000):
     # Loop over iterations
     for i in range(n_iter):
 
-        integrations = 20
+        integrations = 25
         for i in range(integrations):
 
             # Evaluate the equations of motion
@@ -219,7 +219,7 @@ def run(Jeval,th_init,th_d_init,T,lr=.01,n_iter=1000):
 #######################################################
 # TITLE and MAIN FIGURE
 #######################################################
-st.title('Robotics : Forward Dynamics')
+st.title('Forward Dynamics')
 st.write('By Brian Lesko, 9/21/2023')
 
 "---"
@@ -351,7 +351,7 @@ with st.expander("Joint Angles", expanded=True):
 
 # select every nth frame
 
-seq = np.arange(0, len(hist['th']), 44)
+seq = np.arange(0, len(hist['th']), 55)
 
 # add first frame to the beginning of the sequence
 seq = np.insert(seq, 0, 0)
