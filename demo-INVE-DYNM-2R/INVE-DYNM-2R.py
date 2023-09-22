@@ -230,7 +230,7 @@ with col1:
     st.write('This is a robot simulation ')
     st.write('Change its joint torques below 👇')
     T1 = st.slider('Joint 1 Torque', -1.0, 6.0, 0.0, step=0.01)
-    T2 = st.slider('Joint 2 Torque', -1.0, 5.0, 0.0, step=0.01)
+    T2 = st.slider('Joint 2 Torque', -1.0, 1.0, 0.0, step=0.01)
     T = np.array([[T1], [T2]])
 
     st.write('See the joint & link frames 👇')
@@ -289,7 +289,7 @@ ax1.plot(1.5, .5, 'kx', markersize=5)
 ######################################################
 
 with col2:
-    with st.expander("Dynamic 🤖", expanded=True):
+    with st.expander("Can you make it reach the X?", expanded=True):
         robot_plot = st.empty()
 
 
@@ -300,7 +300,7 @@ with col2:
         with st.spinner('Performing some simulation wizardry...'):
             th_d = np.array([[0], [0]])  # joint velocities
             lr = .0001  # learning rate
-            hist = run(mcgeval,th,th_d,T,lr,n_iter=4000)
+            hist = run(mcgeval,th,th_d,T,lr,n_iter=3000)
 
 ######################################################
 # Plot Angles over time 
@@ -366,7 +366,7 @@ for i in seq:
 
             # trace the end effector path from t = 0 to t = i using hist X
             X = np.array(hist['X'][0:i])
-            ax1.plot(X[:,0], X[:,1], linestyle=(0, (1, 12)), color='k', alpha=1)
+            ax1.plot(X[:,0], X[:,1], linestyle=(0, (10, 5)), color='k', alpha=1)
 
             # Plot the robot
             T_list = getT_list(hist['th'][i])
