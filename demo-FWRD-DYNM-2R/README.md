@@ -1,4 +1,4 @@
-[![Open in Streamlit]([https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://github.com/BrianLesko/Robotics/blob/main/demo-FWRD-DYNM-2R/FWRD-DYNM-2R.py](https://robotics-fd-brianlesko.streamlit.app)
+[![Open in Streamlit]([https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://github.com/BrianLesko/Robotics/blob/main/demo-FWRD-DYNM-2R/FWRD-DYNM-2R.py](https://robotics-fd-brianlesko.streamlit.app))
 
 # Demo: Forward Kinematics
 A [Streamlit](https://streamlit.io) demo [written in pure Python]([https://github.com/streamlit/demo-uber-nyc-pickups/blob/main/streamlit_app.py](https://robotics-fd-brianlesko.streamlit.app) to visualize robotics engineering forward kinemtaics simulation of a robot.
