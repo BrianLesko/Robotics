@@ -1,9 +1,10 @@
-[![Open in Streamlit]([https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://github.com/BrianLesko/Robotics/blob/main/demo-FWRD-DYNM-2R/FWRD-DYNM-2R.py](https://robotics-fd-brianlesko.streamlit.app))
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/streamlit/demo-uber-nyc-pickups/main)
 
 # Demo: Forward Kinematics
-A [Streamlit](https://streamlit.io) demo [written in pure Python]([https://github.com/streamlit/demo-uber-nyc-pickups/blob/main/streamlit_app.py](https://robotics-fd-brianlesko.streamlit.app) to visualize robotics engineering forward kinemtaics simulation of a robot.
 
-![](demo-FWRD-DYNM-2R/docs/Preview.gif)
+to visualize robotics engineering forward kinemtaics simulation of a robot.
+
+![](https://github.com/brianlesko/robotics/demo-FWRD-DYNM-2R/docs/Preview.gif)
 
 Hi, Im Brian Lesko, I started my github in 2022 while studying at Ohio State for my Masters in Mechanical Engineering. I hope you can find my work here useful I want to help others and in the process get better at documenting what I love. If you like my work, go check out some of my other projects and connect with me. Im open to collaborating.
 
