@@ -6,7 +6,7 @@ to visualize a simple robot and demonstrate forward dynamics in robotics enginee
 
 ![](docs/Preview.gif)
 
-Hi, I'm Brian Lesko, I started my github in 2022 while studying at Ohio State for my Masters in Mechanical Engineering. I hope you can find my work here useful. I want to help others and in the process get better at documenting what I love. If you like my work, go check out some of my other projects and connect with me. I'm open to collaborating.
+Hi, I'm Brian Lesko. I started my github in 2022 while studying at Ohio State for my Masters in Mechanical Engineering. I hope you can find my work here useful. I want to help others and in the process get better at documenting what I love. If you like my work, go check out some of my other projects and connect with me. I'm open to collaborating.
 
 ## Repo Links 
 
