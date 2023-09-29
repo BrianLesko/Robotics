@@ -4,7 +4,7 @@
 A [Streamlit](https://streamlit.io) demo [written in pure Python](https://github.com/BrianLesko/Robotics/blob/main/demo-FWRD-DYNM-2R/FWRD-DYNM-2R.py)
 to visualize robotics engineering forward kinemtaics simulation of a robot.
 
-![](https://github.com/BrianLesko/Robotics/blob/main/demo-FWRD-DYNM-2R/docs/Preview.gif)
+![](demo-FWRD-DYNM-2R/docs/Preview.gif)
 
 ![](docs/docfx/images/MixtureOpen.gif)
 
