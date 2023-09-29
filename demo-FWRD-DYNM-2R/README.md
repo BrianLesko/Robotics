@@ -1,6 +1,6 @@
 [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://github.com/BrianLesko/Robotics/blob/main/demo-FWRD-DYNM-2R/FWRD-DYNM-2R.py)
 
-# Forward Kinematics
+# Demo: Forward Kinematics
 
 This repository subfolder exists to demonstrate forward kinematics with a web app in python. 
 
