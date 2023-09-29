@@ -16,3 +16,9 @@ Check out my machine learning and AI repository [here](https://github.com/BrianL
 
 Check out my LinkedIn [here](https://www.linkedin.com/in/brianlesko/)
 
+## Run this demo locally
+```
+pip install --upgrade streamlit
+streamlit run https://github.com/BrianLesko/Robotics/blob/main/demo-FWRD-DYNM-2R/FWRD-DYNM-2R.py
+```
+
