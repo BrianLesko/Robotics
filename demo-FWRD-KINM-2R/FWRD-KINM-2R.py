@@ -15,6 +15,11 @@ style.use("ggplot")
 from IPython.display import set_matplotlib_formats
 set_matplotlib_formats('svg')
 
+st.title('Robotics : Forward Kinematics')
+
+# subtitle
+st.write('By Brian Lesko, 9/12/2023')
+
 # the home configuration of the robot is defined as the configuration where all the joint angles are zero
 # It is most convenient to define the home configuration so that the rotational axis of each joint is aligned with the z-axis of the base frame, so that the math is less computationally expensive and easier to understand
 
@@ -63,11 +68,6 @@ ax.set_aspect('equal')
 # set the axes ticks to only show integers
 ax.xaxis.set_major_locator(plt.MaxNLocator(integer=True))
 ax.yaxis.set_major_locator(plt.MaxNLocator(integer=True))
-
-st.title('Robotics : Forward Kinematics')
-
-# subtitle
-st.write('By Brian Lesko, 9/12/2023')
 
 #######################################################
 #GAME
