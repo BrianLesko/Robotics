@@ -231,21 +231,59 @@ if st.sidebar.checkbox('Show Explanation'):
          
     st.write(' Find a more detailed explanation of this topic in Northwesterns Modern Robotics textbook.')
 
-st.write('  ')
 st.write('  ') 
 st.write('  ') 
-st.write('  ') 
-st.write(""" 
-Hey it's Brian,
+
+col1, col2, = st.columns([1,5], gap="medium")
+
+with col1:
+    st.image('./dp.png')
+
+#Through this page, I want to share my passion for engineering and my desire to be at the forefront of where technology meets creativity and precision.
+with col2:
+    st.write(""" 
+    Hey it's Brian,
+            
+    Thanks for visting this page, I hope you enjoy it!
+            
+    Feel free to explore more about my journey and connect with me through Twitter, Github and Linkedin below.
+
+    """)
          
-Through this page, I want to share my passion for engineering and my desire to be at the forefront of where technology meets creativity and precision.
-         
-Thanks for visting the page, I hope you enjoy it!
-         
-Feel free to explore more about my journey and connect with me through Twitter, LinkedIn, or GitHub.
-         
-""")
-st.write('  ') 
-st.write("""https://twitter.com/BrianJosephLeko
-          https://www.linkedin.com/in/brianlesko/
-          https://github.com/BrianLesko""")
+##################################################################
+# Brian Lesko
+# Social Links
+##################################################################
+
+
+# make 10 columns 
+col1, col2, col3, col4, col5, col6 = st.columns(6)
+
+
+with col2:
+
+    st.write('')
+    st.write('')
+    st.write('[Twitter](https://twitter.com/BrianJosephLeko)')
+
+with col3:
+
+    st.write('')
+    st.write('')
+    st.write('[LinkedIn](https://www.linkedin.com/in/brianlesko/)')
+
+with col4:
+
+    st.write('')
+    st.write('')
+    st.write('[Github](https://github.com/BrianLesko)') 
+
+with col5:
+
+    st.write('')
+    st.write('')
+    st.write('[Buy me a Coffee](https://www.buymeacoffee.com/brianlesko)')
+
+# write, centered "Brian Lesko 9/19/2023"
+
+"---"
