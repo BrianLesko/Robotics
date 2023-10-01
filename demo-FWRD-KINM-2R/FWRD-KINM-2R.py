@@ -24,8 +24,8 @@ L2 = 1
 
 # The joint angles are defined as th1 and th2, or th = [th1 th2]'
 # defining the joint angles as input variables in a streamlit app sidebar
-th1 = st.sidebar.slider('Theta 1', -np.pi, np.pi, 0.0, step=0.01)
-th2 = st.sidebar.slider('Theta 2', -np.pi, np.pi, 0.0, step=0.01)
+th1 = st.slider('Theta 1', -np.pi, np.pi, 0.0, step=0.01)
+th2 = st.slider('Theta 2', -np.pi, np.pi, 0.0, step=0.01)
 
 # The home configuration of a 2R planar robot
 p = np.array([[L1+L2], [0], [0]]) # The end effector position in the home configuration
@@ -156,7 +156,7 @@ def draw_axis(ax, T, length=4, tone=0.5,alpha=1.0):
         ax.scatter(transformed_end[0], transformed_end[1], s=1, color=color,alpha = .01)
 
 # add a checkbox to show the draw axes at the joints and end effector
-if st.sidebar.checkbox('Show Joint Orientations'):
+if st.checkbox('Show Joint Orientations'):
     # use drawaxes to draw the axes at the origin of each frame
     for i in range(len(T_list)):
         draw_axis(ax, T_list[i], length=1, tone=0.5, alpha=.2)
@@ -168,7 +168,7 @@ if st.sidebar.checkbox('Show Joint Orientations'):
 st.pyplot(fig)
 
          
-if st.sidebar.checkbox('Show Explanation'):
+if st.checkbox('Show Explanation'):
     # explain what forward kinematics is
     st.write('Forward kinematics is the process of calculating the joint positions and orientations from the joint angles.')
 
