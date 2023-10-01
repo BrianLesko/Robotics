@@ -4,7 +4,7 @@
 A [Streamlit](https://streamlit.io) demo [written in pure Python](https://github.com/BrianLesko/Robotics/blob/main/demo-FWRD-KINM-2R/FWRD-KINM-2R.py)
 to visualize a simple robot and demonstrate forward kinematics in robotics engineering.
 
-![](docs/Preview.gif)
+![](preview.png)
 
 Hi, I'm Brian Lesko. I started my github in 2022 while studying at Ohio State for my Masters in Mechanical Engineering. I hope you can find my work here useful. I want to help others and in the process get better at documenting what I love. If you like my work, go check out some of my other projects and connect with me. I'm open to collaborating.
 
