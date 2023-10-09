@@ -5,7 +5,7 @@
 A [Streamlit](https://streamlit.io) demo [written in pure Python](https://github.com/BrianLesko/Robotics/blob/main/CoordinateFrameAnimation/TransformationMatriciesDemo.py)
 to visualize coordinate frames for robotics engineering and modeling software right in python.
 
-![](docs/rotation.gif)
+![](rotation.gif)
 
 This repository subfolder exists to demonstrate a foundational topic in modern robotics and system autonomy: 
 
