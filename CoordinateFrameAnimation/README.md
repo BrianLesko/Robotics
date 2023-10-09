@@ -1,5 +1,12 @@
 # Transformation Matricies Web App
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://robotics-transformation.streamlit.app)
+
+A [Streamlit](https://streamlit.io) demo [written in pure Python](https://github.com/BrianLesko/Robotics/blob/main/CoordinateFrameAnimation/TransformationMatriciesDemo.py)
+to visualize coordinate frames for robotics engineering and modeling software right in python.
+
+![](docs/rotation.gif)
+
 This repository subfolder exists to demonstrate a foundational topic in modern robotics and system autonomy: 
 
 transformations and coordinate systems. How are they represented and how do robots keep track of them? 
@@ -26,6 +33,12 @@ Check out my machine learning and AI repository [here](https://github.com/BrianL
 ### Social Links 
 
 Check out my LinkedIn [here](https://www.linkedin.com/in/brianlesko/)
+
+## Run this demo locally
+```
+pip install --upgrade streamlit
+streamlit run https://github.com/BrianLesko/Robotics/blob/main/CoordinateFrameAnimation/TransformationMatriciesDemo.py
+```
 
 
 
