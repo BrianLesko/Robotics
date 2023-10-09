@@ -1,4 +1,4 @@
-[![Open in Streamlit](https://robotics-ik-lesko.streamlit.app)
+[![Open in Streamlit](https://robotics-ik-lesko.streamlit.app)]
 
 # Demo: Stochastic Gradient Descent for Robotics: Inverse Kinematics
 A [Streamlit](https://streamlit.io) demo [written in pure Python](https://github.com/BrianLesko/Robotics/blob/main/demo-INVE-KINM-2R/INVE-KINM-2R.py)
