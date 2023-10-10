@@ -343,7 +343,7 @@ if Dynamic == True:
 
     n = len(hist['th0'])
 
-    exp_seq = np.geomspace(1, n, num=50, dtype=int) - 1
+    exp_seq = np.geomspace(1, n, num=40, dtype=int) - 1
 
     for i in exp_seq:
 
